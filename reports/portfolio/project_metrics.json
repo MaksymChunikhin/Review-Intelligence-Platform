@@ -1,0 +1,32 @@
+{
+  "snapshot": {
+    "start_date": "2021-01-01",
+    "end_date": "2023-09-13",
+    "canonical_review_count": 8986368,
+    "catalog_product_count": 1028914,
+    "catalog_products_with_reviews": 550351
+  },
+  "active_section": {
+    "name": "Beauty & Personal Care > Hair Care > Shampoo & Conditioner",
+    "catalog_product_count": 40402,
+    "reviewed_product_count": 21651,
+    "review_count": 358925,
+    "aspect_count": 46,
+    "reviews_with_extracted_aspects": 322689,
+    "review_aspect_mention_count": 855465
+  },
+  "sentiment_models": {
+    "training_review_count": 999999,
+    "tfidf_balanced_product_holdout_macro_f1": 0.78717,
+    "distilbert_balanced_product_holdout_macro_f1": 0.81815,
+    "label_source": "rating-derived weak labels",
+    "distilbert_status": "candidate_pending_human_review"
+  },
+  "aspect_extractor": {
+    "training_review_count": 6000,
+    "aspect_count": 46,
+    "independent_silver_f1": 0.64037,
+    "reference_kind": "gemini_silver_not_human_gold",
+    "human_gold_accepted": false
+  }
+}
