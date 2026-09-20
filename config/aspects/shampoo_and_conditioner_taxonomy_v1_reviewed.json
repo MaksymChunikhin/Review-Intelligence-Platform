@@ -1,0 +1,395 @@
+{
+  "taxonomy_version": "shampoo_and_conditioner_taxonomy_v1",
+  "review_schema_version": "aspect_taxonomy_review_v1",
+  "reviewed_on": "2026-09-19",
+  "reviewed_by": "project_owner_delegated_review",
+  "aspects": [
+    {
+      "aspect_id": "scent",
+      "canonical_name": "Scent",
+      "definition": "The product fragrance, its pleasantness, strength, and persistence.",
+      "parent_group": "sensory",
+      "source_candidate_keys": ["scent", "fragrance", "smell"],
+      "additional_aliases": ["aroma", "odor"]
+    },
+    {
+      "aspect_id": "product_texture_consistency",
+      "canonical_name": "Product Texture & Consistency",
+      "definition": "The thickness, viscosity, and physical texture of the formula itself.",
+      "parent_group": "sensory",
+      "source_candidate_keys": ["texture", "consistency", "texture and feel", "product consistency", "viscosity"],
+      "additional_aliases": ["watery", "thick formula"]
+    },
+    {
+      "aspect_id": "softness",
+      "canonical_name": "Softness & Smoothness",
+      "definition": "How soft and smooth hair feels after use.",
+      "parent_group": "hair_outcome",
+      "source_candidate_keys": ["softness", "hair softness", "smoothness"],
+      "additional_aliases": ["silky", "silkiness"]
+    },
+    {
+      "aspect_id": "moisture_and_hydration",
+      "canonical_name": "Moisture & Hydration",
+      "definition": "Hydration, nourishment, dryness prevention, or drying effects on hair.",
+      "parent_group": "hair_outcome",
+      "source_candidate_keys": ["moisture", "moisturization", "hydration", "moisturizing ability", "nourishment", "dryness", "hair dryness"],
+      "additional_aliases": ["hydrating", "drying"]
+    },
+    {
+      "aspect_id": "detangling",
+      "canonical_name": "Detangling",
+      "definition": "How easily the product removes tangles and supports combing.",
+      "parent_group": "hair_outcome",
+      "source_candidate_keys": ["detangling", "tangles", "combing"],
+      "additional_aliases": ["knots", "brushability"]
+    },
+    {
+      "aspect_id": "hair_feel",
+      "canonical_name": "Hair Feel",
+      "definition": "General tactile feel of hair not captured by a more specific outcome.",
+      "parent_group": "hair_outcome",
+      "source_candidate_keys": ["hair feel"],
+      "additional_aliases": ["feel of hair"]
+    },
+    {
+      "aspect_id": "volume_body",
+      "canonical_name": "Volume & Body",
+      "definition": "Added or reduced volume, fullness, body, and apparent thickness.",
+      "parent_group": "hair_outcome",
+      "source_candidate_keys": ["volume", "hair volume", "thickness"],
+      "additional_aliases": ["body", "fullness"]
+    },
+    {
+      "aspect_id": "frizz_control",
+      "canonical_name": "Frizz & Static Control",
+      "definition": "Control of frizz, flyaways, and static electricity.",
+      "parent_group": "hair_outcome",
+      "source_candidate_keys": ["frizz control", "frizz", "static"],
+      "additional_aliases": ["flyaways", "anti-frizz"]
+    },
+    {
+      "aspect_id": "shine_appearance",
+      "canonical_name": "Shine & Appearance",
+      "definition": "Hair shine, gloss, and overall visual appearance after use.",
+      "parent_group": "hair_outcome",
+      "source_candidate_keys": ["shine", "hair shine", "shine and softness", "hair appearance", "appearance"],
+      "additional_aliases": ["gloss", "glossy"]
+    },
+    {
+      "aspect_id": "residue_buildup",
+      "canonical_name": "Residue & Buildup",
+      "definition": "Visible or tactile residue, coating, flakes, or product buildup left behind.",
+      "parent_group": "hair_outcome",
+      "source_candidate_keys": ["residue"],
+      "additional_aliases": ["buildup", "white cast"]
+    },
+    {
+      "aspect_id": "hair_type_compatibility",
+      "canonical_name": "Hair Type Compatibility",
+      "definition": "Suitability and performance for particular textures, thicknesses, curl patterns, or color states.",
+      "parent_group": "suitability",
+      "source_candidate_keys": ["hair texture", "hair type compatibility", "hair type", "hair type performance", "hair thickness"],
+      "additional_aliases": ["fine hair", "thick hair", "curly hair"]
+    },
+    {
+      "aspect_id": "hair_weight",
+      "canonical_name": "Hair Weight",
+      "definition": "Whether the product feels light or weighs hair down.",
+      "parent_group": "hair_outcome",
+      "source_candidate_keys": ["weight", "hair weight", "product weight"],
+      "additional_aliases": ["weigh down", "heavy hair"]
+    },
+    {
+      "aspect_id": "manageability",
+      "canonical_name": "Manageability & Styling Ease",
+      "definition": "How easy hair is to manage and style after use.",
+      "parent_group": "hair_outcome",
+      "source_candidate_keys": ["manageability", "hair manageability", "styling", "softness and manageability"],
+      "additional_aliases": ["easy to style"]
+    },
+    {
+      "aspect_id": "hair_growth_loss",
+      "canonical_name": "Hair Growth, Loss & Shedding",
+      "definition": "Reported changes in growth, shedding, hair fall, or hair loss.",
+      "parent_group": "hair_outcome",
+      "source_candidate_keys": ["hair loss", "hair growth", "hair fall"],
+      "additional_aliases": ["shedding"]
+    },
+    {
+      "aspect_id": "curl_definition",
+      "canonical_name": "Curl Definition",
+      "definition": "Definition and enhancement of curls and waves.",
+      "parent_group": "hair_outcome",
+      "source_candidate_keys": ["curl definition", "curls"],
+      "additional_aliases": ["curl enhancement", "waves"]
+    },
+    {
+      "aspect_id": "hair_strength",
+      "canonical_name": "Hair Strength & Breakage",
+      "definition": "Hair strength, resilience, and resistance to breakage.",
+      "parent_group": "hair_outcome",
+      "source_candidate_keys": ["strength", "hair strength"],
+      "additional_aliases": ["breakage", "stronger hair"]
+    },
+    {
+      "aspect_id": "damage_repair_hair_health",
+      "canonical_name": "Damage Repair & Hair Health",
+      "definition": "Repair of damage and improvement or deterioration of overall hair health.",
+      "parent_group": "hair_outcome",
+      "source_candidate_keys": ["hair health", "hair repair", "repair", "hair damage", "hair condition", "health"],
+      "additional_aliases": ["damaged hair", "healthy hair"]
+    },
+    {
+      "aspect_id": "greasy_oily_finish",
+      "canonical_name": "Greasy or Oily Finish",
+      "definition": "Unwanted greasy, oily, or dirty-looking finish after product use.",
+      "parent_group": "hair_outcome",
+      "source_candidate_keys": ["greasiness", "oiliness"],
+      "additional_aliases": ["greasy hair", "oily finish"]
+    },
+    {
+      "aspect_id": "color_protection",
+      "canonical_name": "Color Protection",
+      "definition": "Protection and retention of existing hair color.",
+      "parent_group": "hair_outcome",
+      "source_candidate_keys": ["color protection", "color retention", "color care", "color", "hair color"],
+      "additional_aliases": ["color safe", "color-treated hair"]
+    },
+    {
+      "aspect_id": "color_toning_deposit",
+      "canonical_name": "Color Toning & Deposit",
+      "definition": "Toning, neutralizing, tinting, or depositing color onto hair.",
+      "parent_group": "hair_outcome",
+      "source_candidate_keys": ["color toning", "toning", "color depositing", "color tint"],
+      "additional_aliases": ["brassiness", "purple shampoo"]
+    },
+    {
+      "aspect_id": "staining",
+      "canonical_name": "Staining",
+      "definition": "Unwanted staining of skin, hands, towels, surfaces, or fixtures.",
+      "parent_group": "usage",
+      "source_candidate_keys": ["staining"],
+      "additional_aliases": ["stains hands", "stains tub"]
+    },
+    {
+      "aspect_id": "drying_time",
+      "canonical_name": "Hair Drying Time",
+      "definition": "Whether the product shortens or lengthens the time needed to dry hair.",
+      "parent_group": "hair_outcome",
+      "source_candidate_keys": ["drying time"],
+      "additional_aliases": ["blow-dry time"]
+    },
+    {
+      "aspect_id": "overall_performance",
+      "canonical_name": "Overall Performance",
+      "definition": "General product effectiveness or quality when no more specific outcome is stated.",
+      "parent_group": "performance",
+      "source_candidate_keys": ["performance", "effectiveness", "overall performance", "quality"],
+      "additional_aliases": ["works well", "does not work"]
+    },
+    {
+      "aspect_id": "lather_foam",
+      "canonical_name": "Lather & Foam",
+      "definition": "The amount, quality, and ease of creating lather or foam.",
+      "parent_group": "performance",
+      "source_candidate_keys": ["lather"],
+      "additional_aliases": ["foam", "suds"]
+    },
+    {
+      "aspect_id": "cleansing",
+      "canonical_name": "Cleansing",
+      "definition": "Removal of dirt, product, chlorine, and impurities from hair and scalp.",
+      "parent_group": "performance",
+      "source_candidate_keys": ["cleansing", "cleanliness", "cleaning", "cleaning power", "hair cleanliness", "chlorine removal"],
+      "additional_aliases": ["cleans well", "clarifying"]
+    },
+    {
+      "aspect_id": "oil_control_absorption",
+      "canonical_name": "Oil Control & Absorption",
+      "definition": "Absorption or control of excess oil and the ability to extend time between washes.",
+      "parent_group": "performance",
+      "source_candidate_keys": ["oil control", "oil absorption", "wash frequency"],
+      "additional_aliases": ["sebum control", "days between washes"]
+    },
+    {
+      "aspect_id": "conditioning_effect",
+      "canonical_name": "Conditioning Effect",
+      "definition": "Whether the product conditions hair as intended.",
+      "parent_group": "performance",
+      "source_candidate_keys": ["conditioning"],
+      "additional_aliases": ["conditioned hair"]
+    },
+    {
+      "aspect_id": "dandruff_control",
+      "canonical_name": "Dandruff Control",
+      "definition": "Reduction or worsening of dandruff and visible scalp flaking.",
+      "parent_group": "performance",
+      "source_candidate_keys": ["dandruff", "dandruff control"],
+      "additional_aliases": ["flakes", "flaking scalp"]
+    },
+    {
+      "aspect_id": "rinsability",
+      "canonical_name": "Rinsability",
+      "definition": "How easily and completely the product rinses out.",
+      "parent_group": "performance",
+      "source_candidate_keys": ["rinsing"],
+      "additional_aliases": ["rinses clean"]
+    },
+    {
+      "aspect_id": "result_longevity",
+      "canonical_name": "Result Longevity",
+      "definition": "How long product effects or freshness last after use.",
+      "parent_group": "performance",
+      "source_candidate_keys": ["longevity"],
+      "additional_aliases": ["long lasting results"]
+    },
+    {
+      "aspect_id": "heat_protection",
+      "canonical_name": "Heat Protection",
+      "definition": "Protection from blow-drying and other heat styling.",
+      "parent_group": "performance",
+      "source_candidate_keys": ["heat protection"],
+      "additional_aliases": ["thermal protection"]
+    },
+    {
+      "aspect_id": "ingredients_formula",
+      "canonical_name": "Ingredients & Formula",
+      "definition": "Ingredient composition, formulation choices, and claims about included or excluded substances.",
+      "parent_group": "formulation",
+      "source_candidate_keys": ["ingredients", "formula"],
+      "additional_aliases": ["sulfate free", "silicone free"]
+    },
+    {
+      "aspect_id": "gentleness",
+      "canonical_name": "Gentleness",
+      "definition": "How mild or gentle the product is on hair, scalp, eyes, and skin.",
+      "parent_group": "formulation",
+      "source_candidate_keys": ["gentleness"],
+      "additional_aliases": ["mild", "tear free"]
+    },
+    {
+      "aspect_id": "skin_eye_safety",
+      "canonical_name": "Skin, Eye & Safety Reactions",
+      "definition": "Skin or eye irritation, allergic reactions, and broader safety concerns.",
+      "parent_group": "formulation",
+      "source_candidate_keys": ["skin reaction", "skin sensitivity", "skin irritation", "eye irritation", "safety"],
+      "additional_aliases": ["allergic reaction", "burning eyes", "rash"]
+    },
+    {
+      "aspect_id": "scalp_health_comfort",
+      "canonical_name": "Scalp Health & Comfort",
+      "definition": "General scalp condition, comfort, feel, and care excluding explicit adverse reactions.",
+      "parent_group": "suitability",
+      "source_candidate_keys": ["scalp comfort", "scalp", "scalp care", "scalp health", "scalp sensation", "scalp feel", "scalp condition"],
+      "additional_aliases": ["soothing scalp"]
+    },
+    {
+      "aspect_id": "scalp_reactions",
+      "canonical_name": "Scalp Irritation & Reactions",
+      "definition": "Itching, burning, breakouts, or other adverse scalp reactions.",
+      "parent_group": "suitability",
+      "source_candidate_keys": ["scalp irritation", "scalp reaction"],
+      "additional_aliases": ["itchy scalp", "burning scalp"]
+    },
+    {
+      "aspect_id": "packaging_integrity",
+      "canonical_name": "Packaging Integrity",
+      "definition": "Leaks, breakage, sealing, damage, and arrival condition of the product package.",
+      "parent_group": "packaging",
+      "source_candidate_keys": ["packaging", "packaging condition", "product condition"],
+      "additional_aliases": ["leaking bottle", "broken package"]
+    },
+    {
+      "aspect_id": "dispenser_functionality",
+      "canonical_name": "Dispenser Functionality",
+      "definition": "Ease and reliability of pumps, sprays, nozzles, and bottle dispensing.",
+      "parent_group": "packaging",
+      "source_candidate_keys": ["pump", "pump dispenser", "dispenser", "sprayer", "nozzle", "spray mechanism", "dispensing", "bottle design"],
+      "additional_aliases": ["spray nozzle", "hard to squeeze"]
+    },
+    {
+      "aspect_id": "product_size_quantity",
+      "canonical_name": "Product Size & Quantity",
+      "definition": "Package size, fill quantity, and whether the received amount matches expectations.",
+      "parent_group": "packaging",
+      "source_candidate_keys": ["size", "product size", "bottle size"],
+      "additional_aliases": ["ounces", "small bottle"]
+    },
+    {
+      "aspect_id": "product_durability",
+      "canonical_name": "Product & Package Durability",
+      "definition": "Physical durability of solid products, containers, lids, and other components.",
+      "parent_group": "packaging",
+      "source_candidate_keys": ["durability"],
+      "additional_aliases": ["falls apart", "sturdy"]
+    },
+    {
+      "aspect_id": "expiration_freshness",
+      "canonical_name": "Expiration & Freshness",
+      "definition": "Expired, stale, or unusually old product concerns.",
+      "parent_group": "packaging",
+      "source_candidate_keys": ["expiration"],
+      "additional_aliases": ["expired product"]
+    },
+    {
+      "aspect_id": "price_affordability",
+      "canonical_name": "Price & Affordability",
+      "definition": "The absolute price and whether it is affordable.",
+      "parent_group": "value",
+      "source_candidate_keys": ["price"],
+      "additional_aliases": ["expensive", "affordable"]
+    },
+    {
+      "aspect_id": "value_for_money",
+      "canonical_name": "Value for Money",
+      "definition": "Perceived value relative to price, performance, and amount received.",
+      "parent_group": "value",
+      "source_candidate_keys": ["value", "price value"],
+      "additional_aliases": ["worth the money"]
+    },
+    {
+      "aspect_id": "product_concentration",
+      "canonical_name": "Product Concentration & Yield",
+      "definition": "How much product is needed per use and how far the product goes.",
+      "parent_group": "value",
+      "source_candidate_keys": ["concentration"],
+      "additional_aliases": ["a little goes a long way"]
+    },
+    {
+      "aspect_id": "application_usability",
+      "canonical_name": "Application & Usability",
+      "definition": "Ease, convenience, and practicality of applying and using the product.",
+      "parent_group": "usage",
+      "source_candidate_keys": ["ease of use", "application", "usability", "convenience"],
+      "additional_aliases": ["easy to apply"]
+    },
+    {
+      "aspect_id": "portability_travel",
+      "canonical_name": "Portability & Travel",
+      "definition": "Convenience for travel, packing, and use away from home.",
+      "parent_group": "usage",
+      "source_candidate_keys": ["portability"],
+      "additional_aliases": ["travel friendly", "on the go"]
+    }
+  ],
+  "excluded_candidates": [
+    {"candidate_key": "hair", "reason": "ambiguous", "explanation": "Generic noun without a stable analytical dimension."},
+    {"candidate_key": "shampoo", "reason": "not_product_aspect", "explanation": "Product-type label already represented by catalog segmentation."},
+    {"candidate_key": "conditioner", "reason": "not_product_aspect", "explanation": "Product-type label already represented by catalog segmentation."},
+    {"candidate_key": "product", "reason": "ambiguous", "explanation": "Generic noun without a stable analytical dimension."},
+    {"candidate_key": "use case", "reason": "ambiguous", "explanation": "Generic umbrella label; specific use cases require separate grounded labels."},
+    {"candidate_key": "shipping", "reason": "not_product_aspect", "explanation": "Fulfillment signal rather than product performance."},
+    {"candidate_key": "overall satisfaction", "reason": "not_product_aspect", "explanation": "Overall sentiment rather than a specific aspect."},
+    {"candidate_key": "dry shampoo", "reason": "not_product_aspect", "explanation": "Product-type label already represented by catalog segmentation."},
+    {"candidate_key": "shampoo and conditioner set", "reason": "not_product_aspect", "explanation": "Bundle type already represented by catalog segmentation."},
+    {"candidate_key": "shampoo and conditioner", "reason": "not_product_aspect", "explanation": "Product-family label already represented by catalog segmentation."},
+    {"candidate_key": "product type", "reason": "not_product_aspect", "explanation": "Catalog classification rather than a review aspect."},
+    {"candidate_key": "order accuracy", "reason": "not_product_aspect", "explanation": "Fulfillment issue rather than product performance."},
+    {"candidate_key": "form factor", "reason": "ambiguous", "explanation": "Abstract label mixing bars, sprays, and packaging without a single sentiment meaning."},
+    {"candidate_key": "comfort", "reason": "ambiguous", "explanation": "Evidence mixes scalp comfort with miscategorized accessories."},
+    {"candidate_key": "deep conditioner", "reason": "not_product_aspect", "explanation": "Product-type label already represented by catalog segmentation."},
+    {"candidate_key": "skin feel", "reason": "ambiguous", "explanation": "Evidence is dominated by body-wash use and does not form a stable hair-care aspect."},
+    {"candidate_key": "dry shampoo powder", "reason": "not_product_aspect", "explanation": "Product-format label already represented by catalog segmentation."}
+  ]
+}

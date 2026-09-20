@@ -1,0 +1,20 @@
+{
+  "silver_version": "shampoo_and_conditioner_silver_eval_v2",
+  "evaluation_version": "shampoo_and_conditioner_evaluation_v1",
+  "taxonomy_version": "shampoo_and_conditioner_taxonomy_v1",
+  "niche_id": "shampoo_and_conditioner",
+  "niche_version": "shampoo_and_conditioner_v1",
+  "dataset_version": "amazon_reviews_2023_beauty_2021_2023_v1",
+  "provider": "google_genai",
+  "backend": "gemini_api",
+  "model": "gemini-3.5-flash-lite",
+  "location": null,
+  "batch_size": 20,
+  "temperature": 0.0,
+  "seed": 146,
+  "thinking_level": "MINIMAL",
+  "max_output_tokens": 65536,
+  "max_retries": 3,
+  "retry_base_seconds": 5,
+  "max_validation_repairs": 3
+}

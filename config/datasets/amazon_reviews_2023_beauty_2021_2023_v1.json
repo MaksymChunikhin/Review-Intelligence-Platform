@@ -1,0 +1,76 @@
+{
+  "manifest_version": "1.0",
+  "dataset_version": "amazon_reviews_2023_beauty_2021_2023_v1",
+  "source_name": "Amazon Reviews 2023",
+  "source_url": "https://amazon-reviews-2023.github.io/",
+  "source_snapshot": "2023",
+  "dataset_category": "Beauty_and_Personal_Care",
+  "date_window": {
+    "start": "2021-01-01",
+    "end": "2023-09-13"
+  },
+  "schema_versions": {
+    "canonical_reviews": "amazon_review_v1",
+    "amazon_products": "amazon_product_v1",
+    "enriched_reviews": "amazon_enriched_review_v1",
+    "category_registry": "amazon_category_registry_v1",
+    "product_catalog": "amazon_product_catalog_v1"
+  },
+  "default_analysis_unit": "parent_asin",
+  "files": [
+    {
+      "role": "raw_reviews",
+      "path": "data/raw/Beauty_and_Personal_Care.jsonl.gz",
+      "format": "jsonl",
+      "compression": "gzip",
+      "size_bytes": 2960355713,
+      "sha256": "137f8d472285fbe03f7de1ee147c06f48095607f29557361f55850844262f151",
+      "record_count": null
+    },
+    {
+      "role": "raw_product_metadata",
+      "path": "data/raw/meta_Beauty_and_Personal_Care.jsonl.gz",
+      "format": "jsonl",
+      "compression": "gzip",
+      "size_bytes": 711243207,
+      "sha256": "9b5ff26c24368f8844637e01f6c3190e00933a776d36afb4ae00b5074b1375c0",
+      "record_count": 1028914
+    },
+    {
+      "role": "filtered_reviews",
+      "path": "data/processed/reviews_2021_2023.jsonl",
+      "format": "jsonl",
+      "compression": "none",
+      "size_bytes": 4336719216,
+      "sha256": "7c12a5e2e355a99fe59eb4411da8ff732a0352497e7967c4b6bc6b37e38558ea",
+      "record_count": 9084957
+    },
+    {
+      "role": "canonical_reviews",
+      "path": "data/processed/amazon_reviews_2023_beauty_2021_2023_v1/reviews.parquet",
+      "format": "parquet",
+      "compression": "zstd",
+      "size_bytes": 1909707586,
+      "sha256": "1899af2d37711569c7d488ef0dc29ec93c0e41ac9fc0830309e4ff857e75a98e",
+      "record_count": 8986368
+    },
+    {
+      "role": "category_registry",
+      "path": "data/processed/amazon_reviews_2023_beauty_2021_2023_v1/category_registry.parquet",
+      "format": "parquet",
+      "compression": "zstd",
+      "size_bytes": 75984,
+      "sha256": "a38380112c4b8802f9546fef331654ad785b6320b79743ae6ab91315c3c8701e",
+      "record_count": 724
+    },
+    {
+      "role": "product_catalog",
+      "path": "data/processed/amazon_reviews_2023_beauty_2021_2023_v1/product_catalog.parquet",
+      "format": "parquet",
+      "compression": "zstd",
+      "size_bytes": 937235500,
+      "sha256": "862fd09c0de7cefe1cab40c9e9bba7fb8912dc25163b6b0223d0531c9598896a",
+      "record_count": 1028914
+    }
+  ]
+}

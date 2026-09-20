@@ -1,0 +1,15 @@
+{
+  "model_version": "shampoo_and_conditioner_aspect_extractor_v2",
+  "taxonomy_version": "shampoo_and_conditioner_taxonomy_v1",
+  "silver_version": "shampoo_and_conditioner_discovery_labels_v1",
+  "method": "char_tfidf_ovr_logreg_plus_exact_alias_v1",
+  "fold_count": 5,
+  "threshold": 0.45,
+  "random_state": 147,
+  "ngram_min": 3,
+  "ngram_max": 5,
+  "minimum_document_frequency": 2,
+  "maximum_features": 75000,
+  "regularization_c": 2.0,
+  "maximum_iterations": 1000
+}

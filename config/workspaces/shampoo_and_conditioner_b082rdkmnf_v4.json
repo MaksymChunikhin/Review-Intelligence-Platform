@@ -1,0 +1,105 @@
+{
+  "workspace_id": "shampoo_and_conditioner_b082rdkmnf",
+  "workspace_version": "shampoo_and_conditioner_b082rdkmnf_v4",
+  "dataset_version": "amazon_reviews_2023_beauty_2021_2023_v1",
+  "niche": {
+    "niche_id": "shampoo_and_conditioner",
+    "niche_version": "shampoo_and_conditioner_v1",
+    "dataset_version": "amazon_reviews_2023_beauty_2021_2023_v1",
+    "category_registry_schema_version": "amazon_category_registry_v1",
+    "display_name": "Shampoo & Conditioner",
+    "status": "approved",
+    "category_path_ids": [
+      "amazon-category:8b84179043164ef2f9fea9b5",
+      "amazon-category:534efec132ace77866aa19ce",
+      "amazon-category:7bc46e8f7dffa99526cae9bf",
+      "amazon-category:9efc15d3fc9a2cbf3b001316",
+      "amazon-category:a19b4977142b80801ae20697",
+      "amazon-category:465dc709c0da97dab32debaf",
+      "amazon-category:b4812ebb5334dd824df4e398",
+      "amazon-category:91b4bcc6461a7fcab872c11d"
+    ],
+    "segments": [
+      {
+        "category_path_id": "amazon-category:91b4bcc6461a7fcab872c11d",
+        "analytical_family_id": "cleansing_products",
+        "analytical_family_name": "Cleansing Products",
+        "competitor_niche_id": "shampoos",
+        "competitor_niche_name": "Shampoos",
+        "comparison_status": "eligible"
+      },
+      {
+        "category_path_id": "amazon-category:534efec132ace77866aa19ce",
+        "analytical_family_id": "cleansing_products",
+        "analytical_family_name": "Cleansing Products",
+        "competitor_niche_id": "two_in_one",
+        "competitor_niche_name": "2-in-1 Shampoo & Conditioner",
+        "comparison_status": "eligible"
+      },
+      {
+        "category_path_id": "amazon-category:7bc46e8f7dffa99526cae9bf",
+        "analytical_family_id": "cleansing_products",
+        "analytical_family_name": "Cleansing Products",
+        "competitor_niche_id": "three_in_one",
+        "competitor_niche_name": "3-in-1 Shampoo, Conditioner & Body Wash",
+        "comparison_status": "eligible"
+      },
+      {
+        "category_path_id": "amazon-category:9efc15d3fc9a2cbf3b001316",
+        "analytical_family_id": "conditioning_products",
+        "analytical_family_name": "Conditioning Products",
+        "competitor_niche_id": "conditioners",
+        "competitor_niche_name": "Conditioners",
+        "comparison_status": "eligible"
+      },
+      {
+        "category_path_id": "amazon-category:a19b4977142b80801ae20697",
+        "analytical_family_id": "conditioning_products",
+        "analytical_family_name": "Conditioning Products",
+        "competitor_niche_id": "deep_conditioners",
+        "competitor_niche_name": "Deep Conditioners",
+        "comparison_status": "eligible"
+      },
+      {
+        "category_path_id": "amazon-category:465dc709c0da97dab32debaf",
+        "analytical_family_id": "dry_shampoos",
+        "analytical_family_name": "Dry Shampoos",
+        "competitor_niche_id": "dry_shampoos",
+        "competitor_niche_name": "Dry Shampoos",
+        "comparison_status": "eligible"
+      },
+      {
+        "category_path_id": "amazon-category:b4812ebb5334dd824df4e398",
+        "analytical_family_id": "product_sets",
+        "analytical_family_name": "Product Sets",
+        "competitor_niche_id": "shampoo_conditioner_sets",
+        "competitor_niche_name": "Shampoo & Conditioner Sets",
+        "comparison_status": "eligible"
+      },
+      {
+        "category_path_id": "amazon-category:8b84179043164ef2f9fea9b5",
+        "analytical_family_id": "unresolved_generic",
+        "analytical_family_name": "Unresolved Generic Products",
+        "competitor_niche_id": "unresolved_generic",
+        "competitor_niche_name": "Unresolved Generic Products",
+        "comparison_status": "quarantined"
+      }
+    ]
+  },
+  "seller_parent_asins": [
+    "B082RDKMNF"
+  ],
+  "competitor_parent_asins": [
+    "B06Y2DT2GJ",
+    "B01CTNRVFM",
+    "B0B3R3C3YJ",
+    "B086YSK11D"
+  ],
+  "review_date_start": "2021-01-01",
+  "review_date_end": "2023-09-12",
+  "verified_purchase_only": false,
+  "pipeline_version": "seller_workspace_v4",
+  "requested_top_k": 4,
+  "requested_minimum_review_count": 250,
+  "actual_minimum_review_count": 250
+}

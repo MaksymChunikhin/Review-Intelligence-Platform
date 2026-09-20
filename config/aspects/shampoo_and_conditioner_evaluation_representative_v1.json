@@ -1,0 +1,21 @@
+{
+  "sampling_version": "shampoo_and_conditioner_evaluation_representative_v1",
+  "niche_id": "shampoo_and_conditioner",
+  "niche_version": "shampoo_and_conditioner_v1",
+  "dataset_version": "amazon_reviews_2023_beauty_2021_2023_v1",
+  "sample_schema_version": "aspect_discovery_sample_v3",
+  "requested_sample_size": 300,
+  "minimum_words": 5,
+  "minimum_per_stratum": 1,
+  "deterministic_seed": 241,
+  "segment_sample_sizes": {
+    "shampoos": 70,
+    "conditioners": 50,
+    "shampoo_conditioner_sets": 50,
+    "dry_shampoos": 40,
+    "two_in_one": 30,
+    "deep_conditioners": 25,
+    "three_in_one": 20,
+    "unresolved_generic": 15
+  }
+}

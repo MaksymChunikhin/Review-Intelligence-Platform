@@ -1,0 +1,458 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Review Intelligence</title>
+  <style>
+    :root {
+      --ink: #0f1111;
+      --muted: #565959;
+      --paper: #eaeded;
+      --card: #ffffff;
+      --line: #d5d9d9;
+      --navy: #131921;
+      --navy-soft: #232f3e;
+      --orange: #ff9900;
+      --orange-soft: #febd69;
+      --yellow: #ffd814;
+      --yellow-border: #fcd200;
+      --blue: #007185;
+      --green: #067d62;
+      --green-soft: #e7f4f1;
+      --red: #b12704;
+      --red-soft: #fff0ed;
+      --shadow: 0 1px 3px rgba(15, 17, 17, .18);
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Amazon Ember", Arial, sans-serif;
+      font-size: 14px;
+    }
+    main { width: 100%; min-height: 100vh; padding-bottom: 56px; }
+    header {
+      display: flex;
+      justify-content: space-between;
+      gap: 28px;
+      align-items: center;
+      padding: 16px max(24px, calc((100vw - 1280px) / 2));
+      background: var(--navy);
+      border-bottom: 3px solid var(--orange);
+      color: #fff;
+    }
+    .content { width: min(1280px, calc(100% - 32px)); margin: 0 auto; }
+    h1 { margin: 3px 0 2px; font-size: clamp(25px, 3vw, 34px); line-height: 1.1; letter-spacing: -.02em; }
+    .subtitle { color: #ddd; margin: 0; font-size: 13px; }
+    select { width: min(360px, 100%); padding: 10px 34px 10px 12px; border: 1px solid #8d9096; border-radius: 4px; background: #f3f3f3; color: var(--ink); font: inherit; }
+    header select { border-color: #fff; box-shadow: 0 0 0 2px transparent; }
+    header select:focus { outline: none; box-shadow: 0 0 0 3px var(--orange); }
+    input, textarea { width: 100%; padding: 11px 12px; border: 1px solid #888c8c; border-radius: 4px; background: #fff; color: var(--ink); font: inherit; }
+    input:focus, textarea:focus, select:focus { outline: 2px solid #00718555; border-color: var(--blue); }
+    textarea { min-height: 92px; resize: vertical; }
+    button {
+      padding: 10px 18px;
+      border: 1px solid var(--yellow-border);
+      border-radius: 999px;
+      background: var(--yellow);
+      color: var(--ink);
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 1px 2px rgba(15, 17, 17, .15);
+    }
+    button:hover { background: #f7ca00; border-color: #f2c200; }
+    button:active { box-shadow: inset 0 1px 3px rgba(15, 17, 17, .2); }
+    .button-link { display: inline-block; padding: 8px 14px; border: 1px solid #d5a000; border-radius: 999px; background: var(--yellow); color: var(--ink); font-size: 13px; font-weight: 600; text-decoration: none; }
+    .button-link:hover { background: #f7ca00; }
+    .search-controls { display: grid; grid-template-columns: minmax(260px, 1fr) 175px 175px 190px auto; gap: 0; }
+    .finder .search-controls { grid-template-columns: 1fr auto; }
+    .search-controls > span { display: none; }
+    .search-controls input { border-radius: 4px 0 0 4px; border-right: 0; }
+    .search-controls button { min-width: 120px; border-radius: 0 4px 4px 0; background: var(--orange-soft); border-color: var(--orange-soft); }
+    .search-controls select { border-radius: 0; border-right: 0; }
+    .evidence-suggestions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin: -4px 0 12px; color: var(--muted); font-size: 12px; }
+    .filter-explanation { margin: 9px 0 0; color: var(--muted); font-size: 12px; line-height: 1.4; }
+    .evidence-chip { padding: 6px 11px; border: 1px solid #888c8c; border-radius: 999px; background: #fff; box-shadow: none; font-size: 12px; }
+    .evidence-chip:hover { background: #f3f3f3; border-color: #565959; }
+    .analyst-controls { display: grid; grid-template-columns: 1fr 220px; gap: 10px; align-items: start; }
+    .analyst-actions { display: grid; gap: 10px; }
+    .analyst-featured {
+      border: 2px solid var(--orange);
+      box-shadow: 0 2px 8px rgba(15, 17, 17, .16);
+      padding: 26px;
+    }
+    .analyst-featured textarea { min-height: 132px; }
+    .feature-kicker {
+      display: inline-block;
+      padding: 5px 10px;
+      border-radius: 3px;
+      background: var(--navy-soft);
+      color: #fff;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: .08em;
+    }
+    .analyst-heading { display: flex; justify-content: space-between; gap: 20px; align-items: start; margin: 6px 0 16px; }
+    .analyst-heading h2 { margin-bottom: 5px; }
+    .analyst-heading p { margin: 0; color: var(--muted); line-height: 1.45; }
+    .grounded-badge { flex: 0 0 auto; padding: 7px 10px; border-radius: 999px; background: var(--green-soft); color: var(--green); font-size: 11px; font-weight: 700; }
+    .analyst-featured .analyst-actions button { background: var(--orange-soft); border-color: #e89b2e; }
+    .consent { display: flex; gap: 8px; align-items: start; color: var(--muted); font-size: 12px; line-height: 1.4; }
+    .consent input { width: auto; margin-top: 2px; }
+    .answer { margin-top: 18px; padding: 18px; border: 1px solid #a6d8df; border-radius: 6px; background: #f0f9fb; line-height: 1.55; }
+    .answer h3 { margin-top: 18px; }
+    .answer li { margin: 6px 0; }
+    .citation-link { display: inline-block; margin: 0 1px; color: var(--blue); font-weight: 700; text-decoration: none; }
+    .citation-link:hover { color: #c45500; text-decoration: underline; }
+    .source-list { display: grid; gap: 8px; margin-top: 10px; }
+    .source-card { border: 1px solid var(--line); border-radius: 4px; background: #fff; }
+    .source-card:target { border-color: var(--orange); box-shadow: 0 0 0 2px #ff990044; }
+    .source-card summary { padding: 10px 12px; cursor: pointer; color: var(--ink); font-weight: 600; }
+    .source-card summary span { color: var(--blue); margin-right: 6px; }
+    .source-card p { margin: 0; padding: 0 12px 12px; line-height: 1.5; }
+    .source-meta { padding: 0 12px 7px; color: var(--muted); font-size: 12px; }
+    .notice { border: 1px solid #e7c55a; border-left: 5px solid var(--orange); background: #fff8e5; padding: 13px 16px; border-radius: 4px; color: #5f4700; margin: 18px 0; }
+    .metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 18px 0; }
+    .metric, .panel, .insight { background: var(--card); border: 1px solid var(--line); box-shadow: var(--shadow); border-radius: 8px; }
+    .metric { padding: 18px; border-top: 4px solid var(--orange); }
+    .metric span { display: block; color: var(--muted); font-size: 12px; margin-bottom: 6px; }
+    .metric strong { font-size: 28px; line-height: 1; font-weight: 700; }
+    .panel { padding: 22px; margin-top: 16px; overflow: hidden; }
+    .finder { margin-top: 20px; }
+    h2 { margin: 0 0 16px; font-size: 22px; line-height: 1.2; }
+    h3 { margin: 0 0 5px; font-size: 16px; }
+    table { border-collapse: collapse; width: 100%; font-size: 14px; }
+    th, td { padding: 13px 10px; border-bottom: 1px solid var(--line); text-align: left; vertical-align: top; }
+    th { background: #f7f8f8; color: var(--muted); font-size: 11px; text-transform: uppercase; letter-spacing: .04em; }
+    tbody strong { color: var(--blue); }
+    .product-asin { margin-top: 5px; color: var(--muted); font-size: 12px; font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+    tr:last-child td { border-bottom: 0; }
+    .role { display: inline-block; padding: 4px 8px; border-radius: 3px; background: #fff2d9; color: #8a5200; font-size: 11px; font-weight: 700; }
+    .role.competitor { background: #eaeded; color: #565959; }
+    .columns { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-top: 16px; }
+    .comparison-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 22px; }
+    .comparison-grid h3 { margin-bottom: 10px; }
+    .comparison-note { margin: -6px 0 16px; color: var(--muted); font-size: 12px; }
+    .support-warning { color: #8a5200; font-size: 11px; }
+    .insight { padding: 22px; }
+    .insight.strength { border-top: 4px solid var(--green); }
+    .insight.problem { border-top: 4px solid var(--red); }
+    .insight-row { padding: 13px 0; border-bottom: 1px solid var(--line); cursor: pointer; }
+    .insight-row:last-child { border-bottom: 0; }
+    .insight-row:hover h3 { color: var(--blue); text-decoration: underline; }
+    .detail { color: var(--muted); font-size: 13px; display: flex; gap: 12px; flex-wrap: wrap; }
+    .empty { color: var(--muted); font-style: italic; }
+    .evidence { display: none; }
+    .evidence.visible { display: block; }
+    .review { background: #f7f8f8; border: 1px solid #eaeded; border-radius: 4px; padding: 15px; margin: 10px 0; }
+    .review-meta { color: var(--muted); font-size: 12px; margin-bottom: 7px; }
+    .review p { margin: 0; line-height: 1.5; }
+    .product-result { display: grid; grid-template-columns: 1fr auto; gap: 14px; align-items: center; padding: 13px 0; border-bottom: 1px solid var(--line); }
+    .product-result:last-child { border-bottom: 0; }
+    .limitations { color: var(--muted); font-size: 13px; line-height: 1.6; }
+    .error { color: var(--red); padding: 16px; background: var(--red-soft); border: 1px solid #e7a18d; border-radius: 4px; }
+    @media (max-width: 820px) {
+      header { align-items: start; flex-direction: column; }
+      .metrics { grid-template-columns: 1fr 1fr; }
+      .columns { grid-template-columns: 1fr; }
+      .comparison-grid { grid-template-columns: 1fr; }
+      .search-controls { grid-template-columns: 1fr; }
+      .search-controls input, .search-controls select, .search-controls button { border: 1px solid #888c8c; border-radius: 4px; }
+      .analyst-controls { grid-template-columns: 1fr; }
+      .analyst-heading { flex-direction: column; }
+      .panel { overflow-x: auto; }
+    }
+  </style>
+</head>
+<body>
+<main>
+  <header>
+    <div>
+      <h1>Review Intelligence</h1>
+      <p class="subtitle">What customers value, what they complain about, and where a product trails competitors.</p>
+    </div>
+  </header>
+  <div class="content">
+    <section class="panel finder">
+      <h2>Find a shampoo or conditioner</h2>
+      <div class="search-controls"><input id="product-query" placeholder="Product name, brand, or ASIN"><span></span><button id="product-search">Find product</button></div>
+      <div id="product-results"></div>
+    </section>
+    <div id="app"><div class="notice">Loading verified analytics artifacts…</div></div>
+  </div>
+</main>
+<script>
+  const app = document.getElementById('app');
+  const esc = value => String(value ?? '').replace(/[&<>'"]/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[char]));
+  const linkCitations = value => esc(value).replace(/\[(R[1-8])\]/g, '<a class="citation-link" data-citation="$1" href="#source-$1">[$1]</a>');
+  const cleanFinding = value => String(value ?? '').replace(/\s*\[R[1-8]\][,.]?/g, '').replace(/\s+([.,])/g, '$1').trim();
+  const pct = value => value == null ? '—' : `${(100 * value).toFixed(1)}%`;
+  const number = value => new Intl.NumberFormat('en-US').format(value);
+  let aspectNames = {};
+  let defaultEvidenceSearch = {query: 'product quality works results', ratingBand: '', scope: 'seller', aspectId: null};
+  let currentEvidenceAspect = null;
+  const evidenceQueries = {
+    scent: 'scent smell fragrance',
+    softness: 'soft smooth silky hair',
+    moisture_and_hydration: 'dry hair moisture hydration',
+    packaging: 'packaging bottle damaged leaked',
+    dispenser_functionality: 'broken pump sprayer nozzle',
+    performance: 'does not work ineffective results',
+    hair_feel: 'hair feels dry rough sticky',
+    frizz_control: 'frizz flyaways smooth control',
+    detangling: 'tangles knots detangle comb',
+    hair_weight: 'heavy weighed down flat hair',
+    residue_buildup: 'residue buildup white flakes',
+    greasy_oily_finish: 'greasy oily hair',
+    price_affordability: 'price expensive affordable value',
+    manageability: 'manageable easy to style',
+    conditioning_effect: 'conditioning effect dry soft hair'
+  };
+  const aspectLabel = id => aspectNames[id] || String(id).split('_').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+  const evidenceQueryFor = id => evidenceQueries[id] || String(id).replaceAll('_', ' ');
+
+  async function getJson(url) {
+    const response = await fetch(url);
+    if (!response.ok) throw new Error((await response.json()).detail || `HTTP ${response.status}`);
+    return response.json();
+  }
+
+  async function searchProducts() {
+    const query = document.getElementById('product-query').value.trim();
+    const results = document.getElementById('product-results');
+    if (query.length < 2) { results.innerHTML = '<p class="empty">Enter at least two characters.</p>'; return; }
+    results.innerHTML = '<p class="empty">Searching Shampoo & Conditioner…</p>';
+    try {
+      const data = await getJson(`/api/v1/products/search?q=${encodeURIComponent(query)}&limit=10`);
+      results.innerHTML = data.items.map(item => `<div class="product-result"><div><strong>${esc(item.store || 'Unknown brand')}</strong> · ${esc(item.parent_asin)}<br>${esc(item.product_title)}<div class="detail">${esc(item.competitor_niche_name || 'Shampoo & Conditioner')} · ${number(item.review_count)} reviews · rating ${item.average_rating?.toFixed(2) ?? '—'}</div></div><button data-product="${esc(item.parent_asin)}">Analyze</button></div>`).join('') || '<p class="empty">No products found.</p>';
+      results.querySelectorAll('button[data-product]').forEach(button => button.addEventListener('click', () => createWorkspace(button.dataset.product)));
+    } catch (error) { results.innerHTML = `<div class="error">${esc(error.message)}</div>`; }
+  }
+
+  async function createWorkspace(parentAsin) {
+    const results = document.getElementById('product-results');
+    results.innerHTML = '<p class="empty">Selecting direct competitors and building the report…</p>';
+    try {
+      const response = await fetch('/api/v1/workspaces', {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify({seller_parent_asin: parentAsin})});
+      if (!response.ok) throw new Error((await response.json()).detail || `HTTP ${response.status}`);
+      const report = await response.json();
+      results.innerHTML = '<p class="empty">The report is ready and displayed below.</p>';
+      render(report);
+    } catch (error) { results.innerHTML = `<div class="error">${esc(error.message)}</div>`; }
+  }
+
+  function insightRows(items, kind, workspace) {
+    if (!items.length) return `<p class="empty">No reliable ${kind === 'strength' ? 'competitive strengths' : 'weaknesses versus competitors'} found.</p>`;
+    return items.map(item => `
+      <div class="insight-row" data-workspace="${esc(workspace)}" data-aspect="${esc(item.aspect_id)}">
+        <h3>${esc(aspectLabel(item.aspect_id))}</h3>
+        <div class="detail">
+          <span>${number(item.mention_count)} mentions</span>
+          <span>Low ratings (1–3 ★): ${pct(item.seller_attention_share)}</span>
+          <span>${item.attention_gap_pp == null ? 'Competitor comparison unavailable' : item.attention_gap_pp < 0 ? `${Math.abs(item.attention_gap_pp).toFixed(1)} percentage points fewer low ratings than competitors` : item.attention_gap_pp > 0 ? `${item.attention_gap_pp.toFixed(1)} percentage points more low ratings than competitors` : 'Same low-rating share as competitors'}</span>
+        </div>
+      </div>`).join('');
+  }
+
+  function render(report) {
+    aspectNames = Object.fromEntries([...report.complaints, ...report.weaknesses, ...report.strengths].map(item => [item.aspect_id, item.aspect_name]));
+    const suggestionMap = new Map();
+    [...report.weaknesses.map(item => ({...item, ratingBand: 'negative'})), ...report.complaints.map(item => ({...item, ratingBand: 'negative'})), ...report.strengths.map(item => ({...item, ratingBand: 'positive'}))].forEach(item => {
+      if (!suggestionMap.has(item.aspect_id)) suggestionMap.set(item.aspect_id, item);
+    });
+    const evidenceSuggestions = [...suggestionMap.values()].slice(0, 4);
+    if (evidenceSuggestions.length) defaultEvidenceSearch = {query: evidenceQueryFor(evidenceSuggestions[0].aspect_id), ratingBand: evidenceSuggestions[0].ratingBand, scope: 'seller', aspectId: evidenceSuggestions[0].aspect_id};
+    else defaultEvidenceSearch = {query: 'product quality works results', ratingBand: '', scope: 'seller', aspectId: null};
+    currentEvidenceAspect = defaultEvidenceSearch.aspectId;
+    const seller = report.products.find(item => item.role === 'seller');
+    const competitorReviews = report.products.filter(item => item.role === 'competitor').reduce((sum, item) => sum + item.review_count, 0);
+    app.innerHTML = `
+      <section class="panel analyst-featured">
+        <span class="feature-kicker">AI REVIEW ANALYST</span>
+        <div class="analyst-heading">
+          <div><h2>Ask the AI analyst</h2><p>Ask a business question and get an evidence-grounded answer based on this product's customer reviews.</p></div>
+          <span class="grounded-badge">Grounded in review evidence</span>
+        </div>
+        <div class="analyst-controls">
+          <textarea id="analyst-question" placeholder="For example: What are the main customer complaints about this product?"></textarea>
+          <div class="analyst-actions">
+            <label class="consent"><input id="analyst-consent" type="checkbox" checked>I allow up to 8 public review texts to be sent to Gemini without user_id, ASIN, or internal IDs.</label>
+            <button id="analyst-ask">Ask AI analyst</button>
+          </div>
+        </div>
+        <div id="analyst-answer"></div>
+      </section>
+      <section class="metrics">
+        <div class="metric"><span>Product reviews</span><strong>${number(seller.review_count)}</strong></div>
+        <div class="metric"><span>Competitor reviews</span><strong>${number(competitorReviews)}</strong></div>
+        <div class="metric"><span>Average rating</span><strong>${seller.average_rating.toFixed(2)}</strong></div>
+        <div class="metric"><span>1–3 star ratings</span><strong>${pct(seller.needs_attention_share)}</strong></div>
+      </section>
+      <section class="panel">
+        <h2>Product and direct competitors</h2>
+        <table><thead><tr><th>Role</th><th>Brand and product</th><th>Reviews</th><th>Rating</th><th>1–3 stars</th></tr></thead>
+        <tbody>${report.products.map(item => `<tr>
+          <td><span class="role ${item.role}">${item.role === 'seller' ? 'product' : 'competitor'}</span></td>
+          <td><strong>${esc(item.store || 'Unknown brand')}</strong><br>${esc(item.product_title)}<div class="product-asin">ASIN: ${esc(item.parent_asin)}</div></td>
+          <td>${number(item.review_count)}</td><td>${item.average_rating.toFixed(2)}</td><td>${pct(item.needs_attention_share)}</td>
+        </tr>`).join('')}</tbody></table>
+      </section>
+      <section class="panel">
+        <h2>Product comparison highlights</h2>
+        <p class="comparison-note">Aspect leaders use the full exact product niche. Repurchase signals compare the selected product with its direct competitors.</p>
+        <div id="comparison-highlights"><p class="empty">Calculating product rankings…</p></div>
+      </section>
+      <section class="columns">
+        <div class="insight strength"><h2>Supported competitive strengths</h2>${insightRows(report.strengths, 'strength', report.workspace_version)}</div>
+        <div class="insight problem"><h2>Supported weaknesses vs competitors</h2>${insightRows(report.weaknesses, 'problem', report.workspace_version)}</div>
+      </section>
+      <section class="panel">
+        <h2>Search supporting reviews</h2>
+        <div class="evidence-suggestions"><span>Quick searches:</span>${evidenceSuggestions.map(item => `<button class="evidence-chip" type="button" data-evidence-query="${esc(evidenceQueryFor(item.aspect_id))}" data-evidence-rating="${esc(item.ratingBand)}" data-evidence-aspect="${esc(item.aspect_id)}">${esc(aspectLabel(item.aspect_id))}</button>`).join('')}</div>
+        <div class="search-controls">
+          <input id="evidence-query" placeholder="Try: ${esc(defaultEvidenceSearch.query)}">
+          <select id="evidence-filter-source" aria-label="Filter reviews by"><option value="amazon">Amazon rating</option><option value="ai">AI aspect sentiment</option></select>
+          <select id="evidence-tone" aria-label="Choose sentiment or rating band"></select>
+          <select id="evidence-scope"><option value="seller">This product</option><option value="all">This product and competitors</option></select>
+          <button id="evidence-search">Search</button>
+        </div>
+        <p id="evidence-filter-explanation" class="filter-explanation"></p>
+        <div id="search-results"></div>
+      </section>
+      <section id="evidence" class="panel evidence"></section>
+      <section class="panel limitations"><h2>Limitations</h2><ul>${report.limitations.map(item => `<li>${esc(item)}</li>`).join('')}</ul></section>`;
+    document.querySelectorAll('.insight-row').forEach(row => row.addEventListener('click', () => loadEvidence(row.dataset.workspace, row.dataset.aspect)));
+    document.getElementById('evidence-search').addEventListener('click', () => searchEvidence(report.workspace_version));
+    document.getElementById('evidence-query').addEventListener('keydown', event => { if (event.key === 'Enter') searchEvidence(report.workspace_version); });
+    document.getElementById('evidence-query').addEventListener('input', () => { currentEvidenceAspect = null; });
+    document.getElementById('evidence-filter-source').addEventListener('change', updateEvidenceFilterControls);
+    updateEvidenceFilterControls(defaultEvidenceSearch.ratingBand);
+    document.querySelectorAll('.evidence-chip').forEach(button => button.addEventListener('click', () => {
+      document.getElementById('evidence-query').value = button.dataset.evidenceQuery;
+      document.getElementById('evidence-filter-source').value = 'amazon';
+      updateEvidenceFilterControls(button.dataset.evidenceRating);
+      document.getElementById('evidence-scope').value = 'seller';
+      currentEvidenceAspect = button.dataset.evidenceAspect;
+      searchEvidence(report.workspace_version);
+    }));
+    document.getElementById('analyst-ask').addEventListener('click', () => askAnalyst(report.workspace_version));
+    loadComparisonInsights(report.workspace_version);
+  }
+
+  function rankingCell(item, sentiment) {
+    if (!item) return '<span class="empty">No evidence</span>';
+    const label = sentiment === 'positive' ? 'positive' : 'negative';
+    return `<strong>${esc(item.store || 'Unknown brand')}</strong><div class="detail">${number(item.sentiment_count)} ${label} mentions out of ${number(item.mention_count)} · ${pct(item.sentiment_share)}</div>${item.support_sufficient ? '' : '<div class="support-warning">Limited evidence</div>'}`;
+  }
+
+  async function loadComparisonInsights(workspace) {
+    const output = document.getElementById('comparison-highlights');
+    if (!output) return;
+    try {
+      const data = await getJson(`/api/v1/workspaces/${encodeURIComponent(workspace)}/comparison-insights`);
+      const featuredIds = new Set(['moisture_and_hydration', 'softness', 'frizz_control', 'detangling', 'price_affordability']);
+      const rankings = data.aspect_rankings.filter(item => featuredIds.has(item.aspect_id));
+      const aspectRows = rankings.map(item => `<tr><td><strong>${esc(item.aspect_name)}</strong></td><td>${rankingCell(item.positive_products[0], 'positive')}</td><td>${rankingCell(item.negative_products[0], 'negative')}</td></tr>`).join('');
+      const repurchaseRows = data.repurchase_products.slice(0, 3).map(item => `<tr><td><strong>${esc(item.store || 'Unknown brand')}</strong></td><td>${number(item.signal_count)} of ${number(item.review_count)}</td><td>${pct(item.signal_share)}</td></tr>`).join('');
+      const complaintRows = data.high_rating_recurring_complaints.slice(0, 3).map(item => `<tr><td><strong>${esc(item.store || 'Unknown brand')}</strong><div class="detail">rating ${item.average_rating.toFixed(2)}</div></td><td>${esc(item.aspect_name)}</td><td>${number(item.negative_count)} of ${number(item.mention_count)}</td></tr>`).join('');
+      output.innerHTML = `<p class="comparison-note">Compared across ${number(data.comparison_product_count)} products${data.comparison_niche_id ? ` in ${esc(data.comparison_niche_id.replaceAll('_', ' '))}` : ''}.</p><table><thead><tr><th>Aspect</th><th>Most praised</th><th>Most criticized</th></tr></thead><tbody>${aspectRows}</tbody></table><div class="comparison-grid"><div><h3>Repurchase signals</h3><table><thead><tr><th>Product</th><th>Reviews saying “buy again”</th><th>Share</th></tr></thead><tbody>${repurchaseRows}</tbody></table></div><div><h3>Recurring complaints despite a high rating</h3><table><thead><tr><th>Product</th><th>Top complaint</th><th>Negative mentions</th></tr></thead><tbody>${complaintRows || '<tr><td colspan="3" class="empty">No supported cases found.</td></tr>'}</tbody></table></div></div>`;
+    } catch (error) { output.innerHTML = `<div class="error">${esc(error.message)}</div>`; }
+  }
+
+  async function askAnalyst(workspace) {
+    const question = document.getElementById('analyst-question').value.trim();
+    const consent = document.getElementById('analyst-consent').checked;
+    const output = document.getElementById('analyst-answer');
+    if (question.length < 2) { output.innerHTML = '<p class="empty">Enter a question.</p>'; return; }
+    if (!consent) { output.innerHTML = '<p class="empty">Check the consent box to allow external processing.</p>'; return; }
+    output.innerHTML = '<p class="empty">Finding evidence and generating an answer…</p>';
+    const payload = {question, scope: 'seller', maximum_evidence_reviews: 8, external_processing_consent: true};
+    try {
+      const response = await fetch(`/api/v1/workspaces/${encodeURIComponent(workspace)}/ask`, {method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload)});
+      if (!response.ok) throw new Error((await response.json()).detail || `HTTP ${response.status}`);
+      const data = await response.json();
+      const sources = data.sources || [];
+      output.innerHTML = `<div class="answer"><p>${linkCitations(data.answer)}</p><h3>Findings</h3><ul>${data.findings.map(item => `<li>${esc(cleanFinding(item.finding))}${item.citations.length ? ` ${item.citations.map(id => `<a class="citation-link" data-citation="${esc(id)}" href="#source-${esc(id)}">[${esc(id)}]</a>`).join(' ')}` : ''}</li>`).join('')}</ul>${data.recommendations.length ? `<h3>Recommended actions</h3><ul>${data.recommendations.map(item => `<li>${linkCitations(item)}</li>`).join('')}</ul>` : ''}<h3>Limitations</h3><ul>${data.limitations.map(item => `<li>${esc(item)}</li>`).join('')}</ul>${sources.length ? `<h3>Review sources</h3><div class="source-list">${sources.map(source => `<details class="source-card" id="source-${esc(source.citation_id)}"><summary><span>[${esc(source.citation_id)}]</span>${esc(source.brand || 'Unknown brand')} · ${source.rating} ★ · ${esc(aspectLabel(source.aspect_id))}</summary><div class="source-meta">${esc(source.review_date)} · ${esc(source.sentiment)}</div><p>${esc(source.review_text)}</p></details>`).join('')}</div>` : ''}<div class="detail" style="margin-top:12px">Reviews used: ${data.evidence_review_count} · model: ${esc(data.metadata.model_version || 'Gemini')}</div></div>`;
+      output.querySelectorAll('.citation-link').forEach(link => link.addEventListener('click', event => {
+        const source = document.getElementById(`source-${link.dataset.citation}`);
+        if (!source) return;
+        event.preventDefault();
+        source.open = true;
+        source.scrollIntoView({behavior: 'smooth', block: 'center'});
+        history.replaceState(null, '', `#source-${link.dataset.citation}`);
+      }));
+    } catch (error) { output.innerHTML = `<div class="error">${esc(error.message)}</div>`; }
+  }
+
+  function updateEvidenceFilterControls(selectedValue) {
+    const source = document.getElementById('evidence-filter-source').value;
+    const tone = document.getElementById('evidence-tone');
+    const previousValue = selectedValue ?? tone.value;
+    tone.innerHTML = source === 'ai'
+      ? '<option value="">Any AI sentiment</option><option value="negative">AI negative</option><option value="neutral">AI neutral</option><option value="positive">AI positive</option>'
+      : '<option value="">All star ratings</option><option value="negative">Negative (1–2 ★)</option><option value="neutral">Neutral (3 ★)</option><option value="positive">Positive (4–5 ★)</option>';
+    tone.value = ['negative', 'neutral', 'positive'].includes(previousValue) ? previousValue : '';
+    document.getElementById('evidence-filter-explanation').textContent = source === 'ai'
+      ? 'AI aspect sentiment evaluates the selected topic inside the review text, regardless of the customer’s star rating.'
+      : 'Amazon rating uses the customer’s original stars: negative 1–2, neutral 3, positive 4–5.';
+  }
+
+  async function searchEvidence(workspace) {
+    const input = document.getElementById('evidence-query');
+    let query = input.value.trim();
+    const filterSource = document.getElementById('evidence-filter-source').value;
+    const tone = document.getElementById('evidence-tone').value;
+    const scope = document.getElementById('evidence-scope').value;
+    const results = document.getElementById('search-results');
+    if (query.length < 2) {
+      query = defaultEvidenceSearch.query;
+      input.value = query;
+      currentEvidenceAspect = defaultEvidenceSearch.aspectId;
+    }
+    results.innerHTML = '<p class="empty">Searching reviews…</p>';
+    const params = new URLSearchParams({q: query, scope, limit: '8'});
+    if (tone) params.set(filterSource === 'ai' ? 'sentiment' : 'rating_band', tone);
+    if (currentEvidenceAspect) params.set('aspect_id', currentEvidenceAspect);
+    try {
+      const data = await getJson(`/api/v1/workspaces/${encodeURIComponent(workspace)}/evidence/search?${params}`);
+      results.innerHTML = data.items.map(item => `<article class="review"><div class="review-meta">${esc(item.store || '')} · ${item.rating} ★ · ${esc(aspectLabel(item.aspect_id))} · AI sentiment: ${esc(item.aspect_sentiment)} · relevance ${item.retrieval_score.toFixed(2)}</div><p>${esc(item.review_text)}</p></article>`).join('') || '<p class="empty">No matching reviews found. Try another filter, quick search, or include competitors.</p>';
+    } catch (error) { results.innerHTML = `<div class="error">${esc(error.message)}</div>`; }
+  }
+
+  async function loadEvidence(workspace, aspect) {
+    const panel = document.getElementById('evidence');
+    panel.classList.add('visible');
+    panel.innerHTML = '<h2>Supporting reviews</h2><p class="empty">Loading…</p>';
+    try {
+      const [data, trend] = await Promise.all([
+        getJson(`/api/v1/workspaces/${encodeURIComponent(workspace)}/aspects/${encodeURIComponent(aspect)}/evidence`),
+        getJson(`/api/v1/workspaces/${encodeURIComponent(workspace)}/aspects/${encodeURIComponent(aspect)}/trend`)
+      ]);
+      const reviews = [...data.positive_examples.map(x => ({...x, tone:'Positive example'})), ...data.negative_examples.map(x => ({...x, tone:'Negative example'}))];
+      const trendRows = trend.items.slice(-12).map(item => `<tr><td>${esc(item.year_month)}</td><td>${number(item.mention_count)}</td><td>${pct(item.needs_attention_share)}</td><td>${pct(item.positive_share)}</td></tr>`).join('');
+      panel.innerHTML = `<h2>${esc(data.aspect_name)} — trend and evidence</h2><table><thead><tr><th>Month</th><th>Mentions</th><th>1–3 stars</th><th>Positive</th></tr></thead><tbody>${trendRows}</tbody></table><h2 style="margin-top:24px">Review examples</h2>${reviews.map(item => `<article class="review"><div class="review-meta">${esc(item.tone)} · ${item.rating ?? '—'} ★ · ${esc(item.review_timestamp?.slice(0,10) || '')}</div><p>${esc(item.review_text)}</p></article>`).join('') || '<p class="empty">No examples found.</p>'}`;
+      panel.scrollIntoView({behavior: 'smooth', block: 'start'});
+    } catch (error) { panel.innerHTML = `<div class="error">${esc(error.message)}</div>`; }
+  }
+
+  async function loadReport(version) {
+    app.innerHTML = '<div class="notice">Loading report…</div>';
+    try { render(await getJson(`/api/v1/workspaces/${encodeURIComponent(version)}/report`)); }
+    catch (error) { app.innerHTML = `<div class="error">${esc(error.message)}</div>`; }
+  }
+
+  async function boot() {
+    try {
+      const data = await getJson('/api/v1/workspaces');
+      if (!data.items.length) throw new Error('No analysis workspaces are available.');
+      document.getElementById('product-search').addEventListener('click', searchProducts);
+      document.getElementById('product-query').addEventListener('keydown', event => { if (event.key === 'Enter') searchProducts(); });
+      await loadReport(data.items[0].workspace_version);
+    } catch (error) { app.innerHTML = `<div class="error">${esc(error.message)}</div>`; }
+  }
+  boot();
+</script>
+</body>
+</html>

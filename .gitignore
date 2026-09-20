@@ -26,6 +26,7 @@ models/
 # Environment variables
 .env
 .env.*
+!.env.example
 
 # IDE
 .vscode/
@@ -37,3 +38,30 @@ Thumbs.db
 
 # Logs
 *.log
+
+# Generated analytical outputs. The public repository keeps only compact,
+# text-free portfolio metrics; full reports remain reproducible local artifacts.
+reports/**
+!reports/README.md
+!reports/portfolio/
+!reports/portfolio/**
+
+# Human-review queues can contain complete public review text and are not part
+# of the source-code distribution.
+notebooks/**/*review_queue*.csv
+notebooks/**/*completed*.csv
+
+# Local deployment draft. It depends on excluded data/model artifacts and will
+# be published only with a self-contained demo bundle.
+.dockerignore
+Dockerfile
+compose.yaml
+
+# Keep one representative workspace matching the portfolio screenshots.
+config/workspaces/*
+!config/workspaces/shampoo_and_conditioner_b082rdkmnf_v4.json
+
+# Superseded conditioner-only experiment configs remain in the local research
+# workspace; the public repository presents the active section pipeline.
+config/aspects/hair_conditioners_*.json
+config/niches/hair_conditioners_v1.json

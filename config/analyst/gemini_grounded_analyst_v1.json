@@ -1,0 +1,15 @@
+{
+  "analyst_version": "gemini_grounded_analyst_v1",
+  "provider": "google_genai",
+  "backend": "gemini_api",
+  "model": "gemini-3.5-flash-lite",
+  "location": null,
+  "temperature": 0.0,
+  "seed": 42,
+  "thinking_level": "LOW",
+  "max_output_tokens": 4096,
+  "max_retries": 3,
+  "retry_base_seconds": 3,
+  "request_timeout_seconds": 45,
+  "maximum_evidence_reviews": 8
+}

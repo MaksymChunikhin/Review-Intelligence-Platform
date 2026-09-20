@@ -1,0 +1,27 @@
+{
+  "evaluation_version": "shampoo_and_conditioner_analyst_eval_v1",
+  "scope": "seller",
+  "maximum_evidence_reviews": 8,
+  "cases": [
+    {"case_id": "q01", "question": "How well does this shampoo cleanse the hair and scalp?", "workspace_version": "shampoo_and_conditioner_b0c49mjgpr_v4", "expected_aspect_id": "cleansing", "expected_sentiment": null, "support_level": "review_exploratory"},
+    {"case_id": "q02", "question": "Does this shampoo produce a good lather?", "workspace_version": "shampoo_and_conditioner_b0c49mjgpr_v4", "expected_aspect_id": "lather_foam", "expected_sentiment": null, "support_level": "review_exploratory"},
+    {"case_id": "q03", "question": "Does this shampoo add volume and body?", "workspace_version": "shampoo_and_conditioner_b0c49mjgpr_v4", "expected_aspect_id": "volume_body", "expected_sentiment": null, "support_level": "review_exploratory"},
+    {"case_id": "q04", "question": "Does this dry shampoo absorb oil between washes?", "workspace_version": "shampoo_and_conditioner_b0c6fgvb9r_v4", "expected_aspect_id": "oil_control_absorption", "expected_sentiment": null, "support_level": "review_exploratory"},
+    {"case_id": "q05", "question": "Does this dry shampoo leave white residue or buildup?", "workspace_version": "shampoo_and_conditioner_b0c6fgvb9r_v4", "expected_aspect_id": "residue_buildup", "expected_sentiment": null, "support_level": "review_exploratory"},
+    {"case_id": "q06", "question": "What do customers criticize about the dry shampoo scent?", "workspace_version": "shampoo_and_conditioner_b0c6fgvb9r_v4", "expected_aspect_id": "scent", "expected_sentiment": "negative", "support_level": "review_exploratory"},
+    {"case_id": "q07", "question": "How well does this 2-in-1 product cleanse hair?", "workspace_version": "shampoo_and_conditioner_b09shg9zy2_v4", "expected_aspect_id": "cleansing", "expected_sentiment": null, "support_level": "review_exploratory"},
+    {"case_id": "q08", "question": "Does this 2-in-1 leave hair conditioned?", "workspace_version": "shampoo_and_conditioner_b09shg9zy2_v4", "expected_aspect_id": "conditioning_effect", "expected_sentiment": null, "support_level": "review_exploratory"},
+    {"case_id": "q09", "question": "Does this 2-in-1 product lather well?", "workspace_version": "shampoo_and_conditioner_b09shg9zy2_v4", "expected_aspect_id": "lather_foam", "expected_sentiment": null, "support_level": "review_exploratory"},
+    {"case_id": "q10", "question": "Does this shampoo and conditioner set hydrate dry hair?", "workspace_version": "shampoo_and_conditioner_b06y2dt2gj_v4", "expected_aspect_id": "moisture_and_hydration", "expected_sentiment": null, "support_level": "review_exploratory"},
+    {"case_id": "q11", "question": "Does this shampoo and conditioner set make hair soft?", "workspace_version": "shampoo_and_conditioner_b06y2dt2gj_v4", "expected_aspect_id": "softness", "expected_sentiment": null, "support_level": "review_exploratory"},
+    {"case_id": "q12", "question": "What do customers criticize most often about packaging?", "workspace_version": "shampoo_and_conditioner_b06y2dt2gj_v4", "expected_aspect_id": "packaging_integrity", "expected_sentiment": "negative", "support_level": "aggregate_supported"},
+    {"case_id": "q13", "question": "What do customers praise most often? Top 5 reasons.", "workspace_version": "shampoo_and_conditioner_b06y2dt2gj_v4", "expected_aspect_id": null, "expected_sentiment": "positive", "support_level": "aggregate_supported"},
+    {"case_id": "q14", "question": "What do customers criticize most often? Top 5 issues.", "workspace_version": "shampoo_and_conditioner_b0c49mjgpr_v4", "expected_aspect_id": null, "expected_sentiment": "negative", "support_level": "aggregate_supported"},
+    {"case_id": "q15", "question": "Which products are praised most often for hydration?", "workspace_version": "shampoo_and_conditioner_b06y2dt2gj_v4", "expected_aspect_id": "moisture_and_hydration", "expected_sentiment": "positive", "support_level": "comparison_supported"},
+    {"case_id": "q16", "question": "Which products are praised most often for making hair soft?", "workspace_version": "shampoo_and_conditioner_b06y2dt2gj_v4", "expected_aspect_id": "softness", "expected_sentiment": "positive", "support_level": "comparison_supported"},
+    {"case_id": "q17", "question": "Which products are praised most often for detangling hair?", "workspace_version": "shampoo_and_conditioner_b06y2dt2gj_v4", "expected_aspect_id": "detangling", "expected_sentiment": "positive", "support_level": "comparison_supported"},
+    {"case_id": "q18", "question": "Which dry shampoos are criticized most often for residue?", "workspace_version": "shampoo_and_conditioner_b0c6fgvb9r_v4", "expected_aspect_id": "residue_buildup", "expected_sentiment": "negative", "support_level": "comparison_supported", "maximum_evidence_reviews": 5},
+    {"case_id": "q19", "question": "Are there highly rated products with recurring complaints?", "workspace_version": "shampoo_and_conditioner_b0c49mjgpr_v4", "expected_aspect_id": null, "expected_sentiment": "negative", "support_level": "comparison_supported"},
+    {"case_id": "q20", "question": "Which products are praised most often for an affordable price?", "workspace_version": "shampoo_and_conditioner_b0c49mjgpr_v4", "expected_aspect_id": "price_affordability", "expected_sentiment": "positive", "support_level": "comparison_supported"}
+  ]
+}
