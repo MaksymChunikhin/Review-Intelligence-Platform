@@ -15,9 +15,11 @@ def test_build_and_query_lsa_index_with_product_filter(tmp_path: Path) -> None:
         {
             "review_id": ["r1", "r2", "r3", "r4", "r5"],
             "parent_asin": ["p1", "p1", "p2", "p2", "p3"],
+            # Repeated topic terms keep the tiny SVD fixture stable across
+            # supported scikit-learn versions.
             "review_text": [
                 "The spray pump broke",
-                "The nozzle does not work",
+                "The spray nozzle pump broke",
                 "Hair feels soft and smooth",
                 "Lovely soft hair",
                 "Strong pleasant scent",
